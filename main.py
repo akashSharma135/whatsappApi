@@ -1,22 +1,28 @@
 import requests
-  
-# api-endpoint
-URL = 'https://api.chat-api.com/instance339103/sendMessage?token=ew70poqie5g3cgvq'
+from time import sleep
 
-phone_list = ['+919810365208']
+instance_id = 'instance339103'
+token_key = 'ew70poqie5g3cgvq'
+
+# api-endpoint
+URL = f'https://api.chat-api.com/{instance_id}/sendMessage?token={token_key}'
+
+phone_list = ['+919810365208', '+918449495992', '+919810365208', '+918449495992', '+919810365208', '+918449495992']
+
+count = 0
 
 for phone in phone_list:
+    count += 1
     data = {
         'phone': phone,
-        'body': 'Hello! bdkjabfs dysfjh yasfjhahsbfj asgdasbhj syagyab sabhjasb. sahfbsabgyuas usiafihk ysagiusa'
+        'body': 'Hello!'
     }
 
     r = requests.post(url=URL, data=data)
+    print(f'response: {r.text}')
+    # msgs want to send before a break
+    if count > 3:   # can set count value as per your need
+        sleep(30)
+        count = 0
 
-pastebin_url = r.text
-print("The pastebin URL is:%s"%pastebin_url)
 
-# URL = 'https://api.chat-api.com/instance339103/messagesHistory?token=ew70poqie5g3cgvq'
-
-# r = requests.get(url=URL)
-# print(r.text)
